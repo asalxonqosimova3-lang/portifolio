@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Asalxon Qosimova | Kosmetolog</title>
+<meta name="description" content="Asalxon Qosimova: 10 yillik tajribaga ega oliy ma'lumotli kosmetolog.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Manrope:wght@400;500;600&display=swap">
+<style>
+/* Layout: sticky 4-tab header, one panel visible at a time; intro panel = text left, animated photo ring right */
+:root{
+  --bg:#fbf6f7; --surface:#ffffff; --fg:#2b1a2f; --muted:#7a6a7e; --line:#eadde2;
+  --accent:#c2336f; --accent-soft:#f9e1ec; --sage:#6f9c88; --sage-soft:#e1efe8;
+  --font-display:"Bricolage Grotesque",system-ui,sans-serif;
+  --font-body:"Manrope",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#150f18; --surface:#201826; --fg:#f6ecf3; --muted:#a898ad; --line:#33283a;
+  --accent:#f06aa3; --accent-soft:#3a1c2d; --sage:#8cc4aa; --sage-soft:#1d2d27; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#150f18; --surface:#201826; --fg:#f6ecf3; --muted:#a898ad; --line:#33283a;
+  --accent:#f06aa3; --accent-soft:#3a1c2d; --sage:#8cc4aa; --sage-soft:#1d2d27; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+h1,h2,h3{font-family:var(--font-display);line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.45;z-index:-1;pointer-events:none}
+.b1{width:340px;height:340px;background:var(--accent-soft);top:-80px;right:-80px;animation:drift 14s ease-in-out infinite alternate}
+.b2{width:300px;height:300px;background:var(--sage-soft);bottom:-90px;left:-90px;animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(40px,30px) scale(1.15)}}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px;flex-wrap:wrap}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.1rem;letter-spacing:-.01em}
+.brand span{color:var(--accent)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 14px;border-radius:99px;transition:background .2s,color .2s}
+nav a:hover{color:var(--fg)}
+nav a[aria-current="page"]{background:var(--accent);color:#fff}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.note{margin-top:14px;font-size:.82rem;color:var(--muted);background:var(--sage-soft);border-radius:10px;padding:8px 12px}
+main{padding-block:36px 56px}
+.panel{animation:in .5s ease both}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* Kirish */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.eyebrow{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-size:clamp(2.4rem,6vw,4rem);margin:10px 0 16px;letter-spacing:-.025em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--muted);max-width:52ch;font-size:1.05rem}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{font:inherit;font-weight:600;border:0;cursor:pointer;text-decoration:none;padding:12px 22px;border-radius:99px;background:var(--accent);color:#fff;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--line)}
+.photo-wrap{display:grid;place-items:center}
+.ring{position:relative;width:min(320px,80vw);aspect-ratio:1;border-radius:50%;padding:7px;background:conic-gradient(from 0deg,var(--accent),var(--sage),var(--accent-soft),var(--accent));animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.photo{width:100%;height:100%;border-radius:50%;overflow:hidden;background:var(--accent-soft);animation:spin 9s linear infinite reverse,float 5s ease-in-out infinite;cursor:pointer;display:grid;place-items:center;position:relative}
+@keyframes float{50%{translate:0 -8px}}
+.photo img{width:100%;height:100%;object-fit:cover;display:none}
+.photo.has img{display:block}.photo.has .ph{display:none}
+.ph{text-align:center;color:var(--accent);font-weight:600;font-size:.85rem;padding:20px}
+.ph svg{width:96px;height:96px;display:block;margin:0 auto 8px}
+.photo-hint{margin-top:14px;font-size:.8rem;color:var(--muted);text-align:center}
+.timeline{margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.tl{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;min-width:0}
+.tl b{display:block;font-family:var(--font-display);font-size:1.7rem;color:var(--accent);line-height:1}
+.tl h3{font-size:1.05rem;margin:10px 0 6px}
+.tl p{color:var(--muted);font-size:.92rem}
+.extra{margin-top:56px;display:grid;gap:48px}
+.years{display:flex;align-items:center;gap:18px;background:var(--accent);color:#fff;border-radius:22px;padding:22px 28px;width:fit-content;max-width:100%}
+.years b{font-family:var(--font-display);font-size:clamp(3.4rem,10vw,5.5rem);line-height:.9}
+.years span{font-family:var(--font-display);font-size:1.5rem;line-height:1.15}
+.years small{font-family:var(--font-body);font-size:.85rem;opacity:.9}
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:720px}
+.qprog{height:6px;border-radius:9px;background:var(--line);margin:16px 0 20px;overflow:hidden}
+.qprog i{display:block;height:100%;background:var(--accent);transition:width .4s}
+.qq{font-family:var(--font-display);font-size:1.25rem;margin-bottom:14px}
+.opts{display:grid;gap:10px}
+.opt{font:inherit;text-align:left;color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:13px 16px;cursor:pointer;transition:border-color .2s,transform .2s}
+.opt:hover{border-color:var(--accent);transform:translateX(4px)}
+.res h3{font-size:1.6rem;color:var(--accent);margin:6px 0 10px}
+.res p{color:var(--muted);margin-bottom:12px}
+.res ul{margin:0 0 18px;padding-left:20px}
+.res li{margin-bottom:4px}
+.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.rev{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;min-width:0}
+.stars{color:var(--accent);letter-spacing:2px;margin-bottom:8px}
+.rev blockquote{margin:0 0 12px;font-size:.98rem}
+.rev figcaption{font-size:.82rem;color:var(--muted);font-weight:600}
+.sec-title{font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em;margin-bottom:8px}
+.sec-sub{color:var(--muted);margin-bottom:28px;max-width:56ch}
+
+/* Xizmatlar */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;min-width:0;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px -18px var(--accent)}
+.card .ico{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin-bottom:14px}
+.card .ico svg{width:22px;height:22px}
+.card h3{font-size:1.15rem;margin-bottom:6px}
+.card p{color:var(--muted);font-size:.93rem}
+.card .price{display:inline-block;margin-top:12px;font-size:.8rem;font-weight:600;color:var(--sage)}
+.skills{margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px 40px}
+.skill .row{display:flex;justify-content:space-between;font-weight:600;font-size:.95rem;margin-bottom:6px}
+.track{height:8px;border-radius:9px;background:var(--line);overflow:hidden}
+.fill{height:100%;border-radius:9px;background:linear-gradient(90deg,var(--accent),var(--sage));width:var(--w);animation:grow 1s ease both}
+@keyframes grow{from{width:0}}
+
+/* Natijalar */
+.work{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin-bottom:30px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:18px}
+.work:nth-child(even) .ba{order:2}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:0}
+.ba div{aspect-ratio:4/5;border-radius:14px;display:grid;place-items:center;font-size:.8rem;font-weight:600;color:var(--muted);background:repeating-linear-gradient(135deg,var(--accent-soft) 0 12px,var(--sage-soft) 12px 24px);text-align:center;padding:8px}
+.work .txt{padding:8px 10px;min-width:0}
+.work h3{font-size:1.4rem;margin:6px 0 8px}
+.work p{color:var(--muted)}
+.stat{display:flex;gap:22px;margin-top:16px;flex-wrap:wrap}
+.stat b{font-family:var(--font-display);font-size:1.6rem;color:var(--accent);display:block;line-height:1}
+.stat span{font-size:.8rem;color:var(--muted)}
+
+/* Aloqa */
+.contact{display:grid;grid-template-columns:.8fr 1.2fr;gap:36px;align-items:start}
+.info{display:grid;gap:12px}
+.info div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.info small{display:block;color:var(--muted);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.info b{font-weight:600;overflow-wrap:anywhere}
+form{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;display:grid;gap:14px;min-width:0}
+label{font-weight:600;font-size:.88rem;display:grid;gap:6px}
+input,select,textarea{font:inherit;color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;width:100%}
+textarea{min-height:110px;resize:vertical}
+#status{font-size:.9rem;border-radius:10px;padding:10px 12px;display:none}
+#status.show{display:block}
+#status.ok{background:var(--sage-soft);color:var(--fg)}
+#status.err{background:var(--accent-soft);color:var(--fg)}
+
+footer{border-top:1px solid var(--line);padding-block:22px;color:var(--muted);font-size:.85rem}
+
+@media (max-width:760px){
+  .hero,.work,.contact{grid-template-columns:1fr}
+  .work:nth-child(even) .ba{order:0}
+  .photo-wrap{order:-1}
+  .bar{justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div>
+
+<header>
+  <div class="wrap bar">
+    <div class="brand">Asalxon <span>Qosimova</span></div>
+    <nav aria-label="Asosiy menyu">
+      <a href="#kirish" data-tab="kirish">Kirish</a>
+      <a href="#xizmatlar" data-tab="xizmatlar">Xizmatlar</a>
+      <a href="#natijalar" data-tab="natijalar">Natijalar</a>
+      <a href="#aloqa" data-tab="aloqa">Aloqa</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="note" style="margin:0 0 28px">Bu namunaviy dizayn. Matnlar, raqamlar va rasmlar vaqtincha qo'yilgan, sizning ma'lumotlaringiz bilan almashtiriladi.</p>
+
+  <!-- 1. KIRISH -->
+  <section class="panel" id="p-kirish" data-panel="kirish">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Kosmetolog</div>
+        <h1>Mukammal gozallik orzu emas, <em>men bilan haqiqat!</em></h1>
+        <p class="lead">Men Asalxon Qosimova, 10 yillik tajribaga ega oliy ma'lumotli kosmetologman. Har bir mijozning teri turiga mos parvarish rejasini tuzaman va natijasini birga kuzatib boraman.</p>
+        <div class="btns">
+          <a class="btn" href="#aloqa">Qabulga yozilish</a>
+          <a class="btn ghost" href="#natijalar">Ishlarimni ko'rish</a>
+        </div>
+      </div>
+      <div class="photo-wrap">
+        <div class="ring">
+          <div class="photo" id="photo">
+            <img id="photoImg" src="photo.jpg" alt="Asalxon Qosimova">
+            <span class="ph">
+              <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="48" cy="36" r="16"/><path d="M16 84c3-18 16-26 32-26s29 8 32 26"/></svg>
+              Rasmingiz shu yerda bo'ladi
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="extra">
+      <div class="years"><b>10</b><span>yillik tajriba<br><small>oliy ma'lumotli kosmetolog</small></span></div>
+
+      <div class="quiz" id="quiz">
+        <div class="eyebrow">Anketa</div>
+        <h2 class="sec-title" style="font-size:1.7rem">Teringiz qanday? 4 ta savol</h2>
+        <div class="qprog"><i id="qbar" style="width:0%"></i></div>
+        <div id="qbody"></div>
+      </div>
+
+      <div>
+        <div class="eyebrow">Mijozlar fikri</div>
+        <h2 class="sec-title" style="font-size:1.7rem">Otzivlar</h2>
+        <p class="note" style="margin:0 0 16px">Namuna otzivlar. Haqiqiy mijozlaringiz fikri bilan almashtiriladi.</p>
+        <div class="reviews">
+          <figure class="rev"><div class="stars" aria-label="5 yulduz">★★★★★</div><blockquote>Yuzim quruq edi, doim qotib turardi. Bir oyda terim yumshadi va yaltirab qoldi.</blockquote><figcaption>Mijoz, quruq teri</figcaption></figure>
+          <figure class="rev"><div class="stars" aria-label="5 yulduz">★★★★★</div><blockquote>Toshmalar 6 haftada ancha kamaydi. Uyda nima ishlatishni ham tushuntirib berdi.</blockquote><figcaption>Mijoz, yog'li teri</figcaption></figure>
+          <figure class="rev"><div class="stars" aria-label="5 yulduz">★★★★★</div><blockquote>Qo'llari juda yengil, og'rimaydi. Piling dan keyin dog'lar yengillashdi.</blockquote><figcaption>Mijoz, aralash teri</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. XIZMATLAR -->
+  <section class="panel" id="p-xizmatlar" data-panel="xizmatlar" hidden>
+    <h2 class="sec-title">Nima qila olaman?</h2>
+    <p class="sec-sub">Xizmatlar va ko'nikmalarim. Narxlar namuna sifatida yozilgan.</p>
+    <div class="grid">
+      <article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3c3 4 6 6.5 6 10a6 6 0 0 1-12 0c0-3.5 3-6 6-10z"/></svg></div><h3>Yuzni chuqur tozalash</h3><p>Mexanik va ultratovush usulida g'ovaklarni tozalash, terini nafas oldirish.</p><span class="price">dan 150 000 so'm</span></article>
+      <article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg></div><h3>Kimyoviy piling</h3><p>Teri rangini tekislash, dog'larni yengillashtirish va yangilash.</p><span class="price">dan 200 000 so'm</span></article>
+      <article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19 19 5M14 4l6 6M4 14l6 6"/></svg></div><h3>Mezoterapiya</h3><p>Terini namlash va yoshartirish uchun vitaminli koktaylar.</p><span class="price">dan 350 000 so'm</span></article>
+      <article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12c3-5 5 5 8 0s5 5 8 0"/></svg></div><h3>Yuz massaji</h3><p>Qon aylanishini yaxshilaydi, shishni kamaytiradi, yuzga yengillik beradi.</p><span class="price">dan 120 000 so'm</span></article>
+      <article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div><h3>Akne va chandiq parvarishi</h3><p>Toshmalarni davolash va izlarni kamaytirish kursi.</p><span class="price">dan 180 000 so'm</span></article>
+      <article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h14v16H5zM9 9h6M9 13h6M9 17h3"/></svg></div><h3>Parvarish rejasi</h3><p>Uy sharoitida ishlatiladigan vositalar bo'yicha shaxsiy tavsiyalar.</p><span class="price">bepul maslahat</span></article>
+    </div>
+    <h2 class="sec-title" style="margin-top:48px;font-size:1.6rem">Ko'nikmalarim</h2>
+    <div class="skills">
+      <div class="skill"><div class="row"><span>Teri turini aniqlash</span><span>95%</span></div><div class="track"><div class="fill" style="--w:95%"></div></div></div>
+      <div class="skill"><div class="row"><span>Yuz tozalash</span><span>92%</span></div><div class="track"><div class="fill" style="--w:92%"></div></div></div>
+      <div class="skill"><div class="row"><span>Piling</span><span>88%</span></div><div class="track"><div class="fill" style="--w:88%"></div></div></div>
+      <div class="skill"><div class="row"><span>Mezoterapiya</span><span>80%</span></div><div class="track"><div class="fill" style="--w:80%"></div></div></div>
+      <div class="skill"><div class="row"><span>Massaj</span><span>90%</span></div><div class="track"><div class="fill" style="--w:90%"></div></div></div>
+      <div class="skill"><div class="row"><span>Mijoz bilan muloqot</span><span>96%</span></div><div class="track"><div class="fill" style="--w:96%"></div></div></div>
+    </div>
+  </section>
+
+  <!-- 3. NATIJALAR -->
+  <section class="panel" id="p-natijalar" data-panel="natijalar" hidden>
+    <h2 class="sec-title">Eng yaxshi 3 ta ishim</h2>
+    <p class="sec-sub">Mijozlarim bilan erishgan natijalar. "Oldin" va "keyin" rasmlari shu yerga qo'yiladi.</p>
+    <article class="work">
+      <div class="ba"><div>Oldin<br>(rasm)</div><div>Keyin<br>(rasm)</div></div>
+      <div class="txt"><div class="eyebrow">1-ish</div><h3>Akneli teri tozalandi</h3><p>Yog'li teri va toshmalar. Tozalash, piling va uy parvarishi rejasi qo'llandi.</p>
+        <div class="stat"><div><b>6 hafta</b><span>davomiyligi</span></div><div><b>8 seans</b><span>jami</span></div></div></div>
+    </article>
+    <article class="work">
+      <div class="ba"><div>Oldin<br>(rasm)</div><div>Keyin<br>(rasm)</div></div>
+      <div class="txt"><div class="eyebrow">2-ish</div><h3>Pigment dog'lar yengillashdi</h3><p>Kimyoviy piling kursi va quyoshdan himoya bo'yicha tavsiyalar.</p>
+        <div class="stat"><div><b>4 seans</b><span>kurs</span></div><div><b>2 oy</b><span>natija ko'rindi</span></div></div></div>
+    </article>
+    <article class="work">
+      <div class="ba"><div>Oldin<br>(rasm)</div><div>Keyin<br>(rasm)</div></div>
+      <div class="txt"><div class="eyebrow">3-ish</div><h3>Quruq teri namlandi</h3><p>Mezoterapiya va massaj bilan teri elastikligi qaytarildi.</p>
+        <div class="stat"><div><b>5 seans</b><span>kurs</span></div><div><b>100%</b><span>mijoz mamnun</span></div></div></div>
+    </article>
+  </section>
+
+  <!-- 4. ALOQA -->
+  <section class="panel" id="p-aloqa" data-panel="aloqa" hidden>
+    <h2 class="sec-title">Men bilan bog'laning</h2>
+    <p class="sec-sub">Formani to'ldiring, xabaringiz menga Telegram orqali keladi.</p>
+    <div class="contact">
+      <div class="info">
+        <div><small>Telegram</small><b>@username (o'zgartiriladi)</b></div>
+        <div><small>Telefon</small><b>+998 90 000 00 00</b></div>
+        <div><small>Ish vaqti</small><b>Du–Sha, 09:00–18:00</b></div>
+      </div>
+      <form id="form" novalidate>
+        <label for="name">Ismingiz<input id="name" name="name" autocomplete="name" placeholder="Masalan: Madina"></label>
+        <label for="contact">Telefon yoki Telegram<input id="contact" name="contact" placeholder="+998 ... yoki @username"></label>
+        <label for="service">Xizmat
+          <select id="service" name="service">
+            <option>Yuzni chuqur tozalash</option><option>Kimyoviy piling</option><option>Mezoterapiya</option><option>Yuz massaji</option><option>Akne parvarishi</option><option>Maslahat kerak</option>
+          </select>
+        </label>
+        <label for="msg">Xabar<textarea id="msg" name="msg" placeholder="Teringiz haqida qisqacha yozing"></textarea></label>
+        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <button class="btn" type="submit" id="send">Yuborish</button>
+        <div id="status" role="status"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© 2026 Asalxon Qosimova · Kosmetolog</div></footer>
+
+<script>
+(function(){
+  var tabs=["kirish","xizmatlar","natijalar","aloqa"];
+  var links=document.querySelectorAll("nav a");
+  var panels=document.querySelectorAll("[data-panel]");
+  function show(){
+    var h=(location.hash||"").replace("#","");
+    if(tabs.indexOf(h)<0)h="kirish";
+    panels.forEach(function(p){
+      var on=p.dataset.panel===h;
+      if(on&&p.hidden){p.hidden=false;p.style.animation="none";void p.offsetWidth;p.style.animation="";}
+      else p.hidden=!on;
+    });
+    links.forEach(function(a){
+      if(a.dataset.tab===h)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");
+    });
+    window.scrollTo(0,0);
+  }
+  window.addEventListener("hashchange",show);
+  show();
+
+  var img=document.getElementById("photoImg");
+  function okPhoto(){if(img.naturalWidth>0)document.getElementById("photo").classList.add("has");}
+  img.addEventListener("load",okPhoto);
+  if(img.complete)okPhoto();
+
+  var Q=[
+    {q:"Yuvingandan 30 daqiqa o'tgach terangiz qanday seziladi?",o:[["Tarang tortilgan, qotgan","q"],["Butun yuzim yaltiraydi","y"],["Peshona va burun yaltiraydi, yonoqlar normal","a"],["Qizaradi yoki achishadi","s"]]},
+    {q:"G'ovaklaringiz qanday ko'rinadi?",o:[["Deyarli ko'rinmaydi","q"],["Hamma joyda kattaroq","y"],["Faqat burun va peshonada","a"],["Ko'rinmaydi, lekin teri juda yupqa","s"]]},
+    {q:"Namlovchi kremsiz bir kun o'tsa nima bo'ladi?",o:[["Teri qotadi, po'st tashlaydi","q"],["Tez yog'lanadi, toshma chiqadi","y"],["T-zona yog'li, yonoqlar quruq","a"],["Qichiydi yoki qizaradi","s"]]},
+    {q:"Yangi krem yoki vosita ishlatsangiz teri qanday javob beradi?",o:[["Yanada quruqlashadi","q"],["Yangi toshmalar chiqadi","y"],["Bir joyda yaxshi, boshqa joyda yomon","a"],["Tez qizaradi, achishadi","s"]]}
+  ];
+  var R={
+    q:["Quruq teri","Terida namlik va yog' yetishmaydi, shuning uchun u tarang bo'lib, po'st tashlaydi.",["Yumshoq yuvinish geli","Gialuron kislotali nam beruvchi vositalar","Mezoterapiya yoki namlovchi niqoblar"]],
+    y:["Yog'li teri","Yog' bezlari ko'p ishlaydi, g'ovaklar tez tiqiladi va toshma chiqishi mumkin.",["Yuzni chuqur tozalash","Yengil kimyoviy piling","Yog'siz, yengil namlovchi"]],
+    a:["Aralash teri","Peshona, burun va iyak yog'li, yonoqlar esa normal yoki quruq bo'ladi.",["Har zonaga alohida parvarish","Yumshoq tozalash va piling","Yengil namlovchi krem"]],
+    s:["Sezgir teri","Teri tashqi ta'sirlarga tez javob beradi: qizaradi, achishadi.",["Xushbo'y moddasiz yumshoq vositalar","Tinchlantiruvchi niqoblar","Kuchli piling qilmaslik"]]
+  };
+  var qi=0,score={q:0,y:0,a:0,s:0};
+  var qbody=document.getElementById("qbody"),qbar=document.getElementById("qbar");
+  function esc(t){return String(t).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
+  function renderQ(){
+    if(qi>=Q.length){
+      var best="q";for(var k in score){if(score[k]>score[best])best=k;}
+      var r=R[best];
+      qbar.style.width="100%";
+      qbody.innerHTML='<div class="res"><div class="eyebrow">Natija</div><h3>'+esc(r[0])+'</h3><p>'+esc(r[1])+'</p><ul>'+r[2].map(function(x){return "<li>"+esc(x)+"</li>"}).join("")+'</ul><div class="btns" style="margin-top:0"><a class="btn" href="#aloqa">Maslahatga yozilish</a><button class="btn ghost" type="button" id="qreset">Qaytadan</button></div></div>';
+      document.getElementById("qreset").onclick=function(){qi=0;score={q:0,y:0,a:0,s:0};renderQ();};
+      return;
+    }
+    qbar.style.width=(qi/Q.length*100)+"%";
+    var it=Q[qi];
+    qbody.innerHTML='<div class="qq">'+(qi+1)+"/"+Q.length+". "+esc(it.q)+'</div><div class="opts">'+it.o.map(function(o,i){return '<button class="opt" type="button" data-i="'+i+'">'+esc(o[0])+'</button>'}).join("")+'</div>';
+    qbody.querySelectorAll(".opt").forEach(function(b){
+      b.onclick=function(){score[it.o[+b.dataset.i][1]]++;qi++;renderQ();};
+    });
+  }
+  renderQ();
+
+  var form=document.getElementById("form"),st=document.getElementById("status"),btn=document.getElementById("send");
+  function say(cls,t){st.className="show "+cls;st.textContent=t;}
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var data={name:form.name.value.trim(),contact:form.contact.value.trim(),service:form.service.value,msg:form.msg.value.trim(),website:form.website.value};
+    if(!data.name||!data.contact||!data.msg){say("err","Ism, aloqa ma'lumoti va xabarni to'ldiring.");return;}
+    btn.disabled=true;say("ok","Yuborilmoqda...");
+    fetch("/api/send",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
+      .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {ok:r.ok,j:j};});})
+      .then(function(x){
+        if(x.ok){say("ok","Rahmat! Xabaringiz yuborildi, tez orada bog'lanaman.");form.reset();}
+        else say("err",x.j.error||"Xabar yuborilmadi. Birozdan keyin qayta urinib ko'ring yoki Telegram orqali yozing.");
+      })
+      .catch(function(){say("err","Internet bilan muammo. Qayta urinib ko'ring.");})
+      .then(function(){btn.disabled=false;});
+  });
+})();
+</script>
+</body>
+</html>
